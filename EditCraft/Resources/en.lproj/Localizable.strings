@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  EditCraft
+
+  Created by swati on 05/09/24.
+  
+*/
+
+
+// tab
+"Video" = "Video";
+"Photo" = "Photo";
+"Audio" = "Audio";
+"Setting" = "Setting";
+
+
+// edit video
+"Edit Video" = "Edit Video";
+"Delete" = "Delete";
+"Share" = "Share";
