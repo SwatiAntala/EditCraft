@@ -29,6 +29,11 @@ class EditVideoCollectionViewCell: UICollectionViewCell {
         setFont()
     }
     
+    func hideView() {
+        imgPlay.isHidden = true
+        lblDuration.isHidden = true
+    }
+    
     func setColor() {
         lblDuration.textColor = AppColor.black
         lblDuration.backgroundColor = AppColor.white.withAlphaComponent(0.6)
@@ -52,6 +57,10 @@ class EditVideoCollectionViewCell: UICollectionViewCell {
         imgPlay.tintColor = AppColor.white.withAlphaComponent(0.6)
         imgThumbnail.image = data.thumImage?.image
         lblDuration.text = " \(data.duration) "
+    }
+    
+    func configData(data: ECPhoto) {
+        imgThumbnail.image = data.thumImage?.image
     }
     
     @IBAction func btnMoreSelected(_ sender: UIButton) {

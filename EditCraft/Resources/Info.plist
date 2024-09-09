@@ -35,5 +35,11 @@
 	<string>This application wants to access your videocamera for getting video and edit for that</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This application wants to access your microphone</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We need access to your Apple Music library to play and manage your music.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>We need access to your files to allow you to pick audio files.</string>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>We need access to your Apple Music library to allow you to pick audio files.</string>
 </dict>
 </plist>

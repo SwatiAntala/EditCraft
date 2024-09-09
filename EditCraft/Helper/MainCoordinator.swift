@@ -32,4 +32,19 @@ class MainCoordinator: Coordinator {
             navigationController.pushViewController(vc, animated: true)
         }
     }
+    
+    func redirectRecordAudio() {
+        if let vc = R.storyboard.audio.recordViewController() {
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func redirectTrimAudio(url: URL) {
+        if let vc = R.storyboard.audio.trimAudioVC() {
+            vc.coordinator = self
+            vc.audioFileURL = url
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
 }

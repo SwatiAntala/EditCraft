@@ -18,3 +18,10 @@
 "Edit Video" = "Edit Video";
 "Delete" = "Delete";
 "Share" = "Share";
+
+// edit audio
+"Recording" = "Recording";
+"Apple Music" = "Apple Music";
+"File Manager" = "File Manager";
+"Record Audio" = "Record Audio";
+"Trim" = "Trim";

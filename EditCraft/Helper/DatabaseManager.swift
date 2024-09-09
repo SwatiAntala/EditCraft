@@ -26,12 +26,10 @@ class DatabaseManager {
             print("Error saving context:", error)
         }
     }
-    
-    // MARK: - CloneApp Methods
-    // Existing CloneApp methods go here...
+}
 
-    // MARK: - ECVideo Methods
-    
+// MARK: - ECVideo Methods
+extension DatabaseManager {
     func addECVideo(_ ecVideo: ECVideo) {
         let entity = Video(context: context)
         configureECVideoEntity(entity, with: ecVideo)
@@ -64,7 +62,7 @@ class DatabaseManager {
             ecVideos = entities.map { entity in
                 return ECVideo(
                     id: entity.id ?? .init(),
-                    url: entity.videoURL ?? "", 
+                    url: entity.videoURL ?? "",
                     thumImage: entity.thumbImg,
                     assetIdentifier: entity.assetIdentifier ?? "",
                     duration: entity.duration ?? ""
@@ -98,9 +96,159 @@ class DatabaseManager {
     }
 }
 
+// MARK: - ECPhoto Methods
+extension DatabaseManager {
+    func addECPhoto(_ ecPhoto: ECPhoto) {
+        let entity = Photo(context: context)
+        configureECPhotoEntity(entity, with: ecPhoto)
+        saveContext()
+    }
+    
+    func updateECPhoto(_ ecPhoto: ECPhoto) {
+        guard let entity = fetchECPhotoEntityByID(id: ecPhoto.id) else {
+            print("ECPhoto with ID \(ecPhoto.id) not found")
+            return
+        }
+        configureECPhotoEntity(entity, with: ecPhoto)
+        saveContext()
+    }
+    
+    func deleteECPhoto(_ ecPhoto: ECPhoto) {
+        guard let entity = fetchECPhotoEntityByID(id: ecPhoto.id) else {
+            print("ECPhoto with ID \(ecPhoto.id) not found")
+            return
+        }
+        context.delete(entity)
+        saveContext()
+    }
+    
+    func fetchECPhotos() -> [ECPhoto] {
+        var ecPhotos: [ECPhoto] = []
+        
+        do {
+            let entities = try context.fetch(Photo.fetchRequest()) as! [Photo]
+            ecPhotos = entities.map { entity in
+                return ECPhoto(
+                    id: entity.id ?? .init(),
+                    thumImage: entity.thumbImg,
+                    assetIdentifier: entity.assetIdentifier ?? ""
+                )
+            }
+        } catch {
+            print("Error fetching ECPhoto entities: \(error)")
+        }
+        
+        return ecPhotos
+    }
+    
+    private func fetchECPhotoEntityByID(id: UUID) -> Photo? {
+        let request: NSFetchRequest<Photo> = Photo.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            return try context.fetch(request).first
+        } catch {
+            print("Error fetching ECPhotoEntity by ID: \(error)")
+            return nil
+        }
+    }
+    
+    private func configureECPhotoEntity(_ entity: Photo, with ecPhoto: ECPhoto) {
+        entity.id = ecPhoto.id
+        entity.thumbImg = ecPhoto.thumImage
+        entity.assetIdentifier = ecPhoto.assetIdentifier
+    }
+}
+
+// MARK: - ECAudio Methods
+extension DatabaseManager {
+    func addECAudio(_ ecAudio: ECAudio) {
+        let entity = Audio(context: context)
+        configureECAudioEntity(entity, with: ecAudio)
+        saveContext()
+    }
+    
+    func updateECAudio(_ ecAudio: ECAudio) {
+        guard let entity = fetchECAudioEntityByID(id: ecAudio.id) else {
+            print("ECAudio with ID \(ecAudio.id) not found")
+            return
+        }
+        configureECAudioEntity(entity, with: ecAudio)
+        saveContext()
+    }
+    
+    func deleteECAudio(_ ecAudio: ECAudio) {
+        guard let entity = fetchECAudioEntityByID(id: ecAudio.id) else {
+            print("ECAudio with ID \(ecAudio.id) not found")
+            return
+        }
+        context.delete(entity)
+        saveContext()
+    }
+    
+    func fetchECAudios() -> [ECAudio] {
+        var ecAudios: [ECAudio] = []
+        
+        do {
+            let entities = try context.fetch(Audio.fetchRequest()) as! [Audio]
+            ecAudios = entities.map { entity in
+                return ECAudio(
+                    id: entity.id ?? .init(),
+                    audioURL: entity.audioURL ?? "",
+                    thumImage: entity.thumImage,
+                    duration: entity.duration ?? "",
+                    name: entity.name ?? "",
+                    size: entity.size ?? ""
+                    
+                )
+            }
+        } catch {
+            print("Error fetching ECAudio entities: \(error)")
+        }
+        
+        return ecAudios
+    }
+    
+    private func fetchECAudioEntityByID(id: UUID) -> Audio? {
+        let request: NSFetchRequest<Audio> = Audio.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            return try context.fetch(request).first
+        } catch {
+            print("Error fetching ECAudioEntity by ID: \(error)")
+            return nil
+        }
+    }
+    
+    private func configureECAudioEntity(_ entity: Audio, with ecAudio: ECAudio) {
+        entity.id = ecAudio.id
+        entity.audioURL = ecAudio.audioURL
+        entity.thumImage = ecAudio.thumImage
+        entity.duration = ecAudio.duration
+        entity.name = ecAudio.name
+        entity.size = ecAudio.size
+    }
+}
+
+
 extension DatabaseManager {
     
     func getEditVideoList() -> [ECVideo] {
         fetchECVideos()
+    }
+}
+
+extension DatabaseManager {
+    func getEditPhotoList() -> [ECPhoto] {
+        fetchECPhotos()
+    }
+}
+
+
+extension DatabaseManager {
+    
+    func getEditAudioList() -> [ECAudio] {
+        fetchECAudios()
     }
 }

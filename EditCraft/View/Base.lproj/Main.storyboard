@@ -69,36 +69,6 @@
             </objects>
             <point key="canvasLocation" x="680" y="-63"/>
         </scene>
-        <!--Photo Edit View Controller-->
-        <scene sceneID="gty-lw-kur">
-            <objects>
-                <viewController storyboardIdentifier="PhotoEditVC" id="EfM-VN-DKb" customClass="PhotoEditViewController" customModule="EditCraft" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hx4-fD-TzI">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="lEm-9q-u98"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AJu-4L-4jE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="302" y="620"/>
-        </scene>
-        <!--Audio Edit View Controller-->
-        <scene sceneID="W6O-Dj-cjA">
-            <objects>
-                <viewController storyboardIdentifier="AudioEditVC" id="zPq-hm-K3l" customClass="AudioEditViewController" customModule="EditCraft" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uWm-iI-47X">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="NIG-mo-gJf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MpL-ff-S2e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1242" y="620"/>
-        </scene>
         <!--Setting View Controller-->
         <scene sceneID="1kl-6b-hXo">
             <objects>
@@ -169,6 +139,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8Y-Po-BzM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-531" y="620"/>
+        </scene>
+        <!--Photo Edit View Controller-->
+        <scene sceneID="DyH-u2-6om">
+            <objects>
+                <viewController storyboardIdentifier="PhotoEditVC" id="EL6-1F-rBk" customClass="PhotoEditViewController" customModule="EditCraft" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AOc-lO-kYU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fsw-ob-lRx">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="9Qd-BT-vqR" customClass="PinterestLayout" customModule="EditCraft" customModuleProvider="target">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="EL6-1F-rBk" id="alW-zu-sj4"/>
+                                    <outlet property="delegate" destination="EL6-1F-rBk" id="Lxe-fm-g4m"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYR-vP-Rcb">
+                                <rect key="frame" x="301" y="726" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pYR-vP-Rcb" secondAttribute="height" multiplier="1:1" id="fcS-fz-r3i"/>
+                                    <constraint firstAttribute="height" constant="60" id="zpQ-bm-xJi"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                                <connections>
+                                    <action selector="btnEditPhotoSelected:" destination="EL6-1F-rBk" eventType="touchUpInside" id="Wc1-Du-AxT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Gds-IE-cgi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Gds-IE-cgi" firstAttribute="trailing" secondItem="pYR-vP-Rcb" secondAttribute="trailing" constant="32" id="Ed3-wv-5bP"/>
+                            <constraint firstItem="fsw-ob-lRx" firstAttribute="top" secondItem="Gds-IE-cgi" secondAttribute="top" id="aWu-D2-hIA"/>
+                            <constraint firstItem="Gds-IE-cgi" firstAttribute="bottom" secondItem="fsw-ob-lRx" secondAttribute="bottom" id="gox-5q-nIB"/>
+                            <constraint firstItem="Gds-IE-cgi" firstAttribute="trailing" secondItem="fsw-ob-lRx" secondAttribute="trailing" id="kBy-aJ-E3g"/>
+                            <constraint firstItem="Gds-IE-cgi" firstAttribute="bottom" secondItem="pYR-vP-Rcb" secondAttribute="bottom" constant="32" id="oMI-vu-ZbT"/>
+                            <constraint firstItem="fsw-ob-lRx" firstAttribute="leading" secondItem="Gds-IE-cgi" secondAttribute="leading" id="pIU-Kl-BvO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnEditPhoto" destination="pYR-vP-Rcb" id="8DW-wc-pVr"/>
+                        <outlet property="collView" destination="fsw-ob-lRx" id="F2t-Br-xRO"/>
+                        <outlet property="pinterestLayout" destination="9Qd-BT-vqR" id="42Z-p1-A64"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ga-M7-awo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="349" y="620"/>
+        </scene>
+        <!--Audio Edit View Controller-->
+        <scene sceneID="Mp5-hK-fg0">
+            <objects>
+                <viewController storyboardIdentifier="AudioEditVC" id="LRe-lz-Uav" customClass="AudioEditViewController" customModule="EditCraft" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H62-dg-0Pw">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2oO-Tn-jNy">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="NkD-hO-Q40">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="LRe-lz-Uav" id="Vlw-of-RTU"/>
+                                    <outlet property="delegate" destination="LRe-lz-Uav" id="XJ3-RE-64w"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fd5-wN-lTq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2oO-Tn-jNy" firstAttribute="leading" secondItem="Fd5-wN-lTq" secondAttribute="leading" id="IoJ-se-zUF"/>
+                            <constraint firstItem="2oO-Tn-jNy" firstAttribute="top" secondItem="Fd5-wN-lTq" secondAttribute="top" id="Jk9-iZ-Jw4"/>
+                            <constraint firstItem="Fd5-wN-lTq" firstAttribute="trailing" secondItem="2oO-Tn-jNy" secondAttribute="trailing" id="KVZ-7W-HLp"/>
+                            <constraint firstItem="Fd5-wN-lTq" firstAttribute="bottom" secondItem="2oO-Tn-jNy" secondAttribute="bottom" id="eZu-mT-qbb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collView" destination="2oO-Tn-jNy" id="K2i-gd-6Ux"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CIR-ra-F2I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1227" y="620"/>
         </scene>
     </scenes>
     <resources>

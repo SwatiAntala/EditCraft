@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Trim Audio View Controller-->
+        <scene sceneID="pwB-o5-kGN">
+            <objects>
+                <viewController storyboardIdentifier="TrimAudioVC" id="dJQ-Mj-fB8" customClass="TrimAudioViewController" customModule="EditCraft" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W27-zY-G94">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="l8u-a4-ege">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="p5J-df-SMp">
+                                        <rect key="frame" x="0.0" y="252.33333333333331" width="393" height="254.33333333333331"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyu-Xi-dAp">
+                                                <rect key="frame" x="16" y="16" width="361" height="90.333333333333329"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npa-XD-LlS" customClass="FDWaveformView" customModule="FDWaveformView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="90.333333333333329"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="npa-XD-LlS" secondAttribute="height" multiplier="4:1" id="ita-08-OtC"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWS-75-mZi" customClass="RangeSeekSlider" customModule="RangeSeekSlider">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="90.333333333333329"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="sliderViewDidChange:" destination="dJQ-Mj-fB8" eventType="valueChanged" id="NpG-sB-Etf"/>
+                                                        </connections>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="BWS-75-mZi" firstAttribute="leading" secondItem="Eyu-Xi-dAp" secondAttribute="leading" id="3dl-jJ-W5Z"/>
+                                                    <constraint firstAttribute="trailing" secondItem="npa-XD-LlS" secondAttribute="trailing" id="Ehw-Qd-Uo9"/>
+                                                    <constraint firstItem="BWS-75-mZi" firstAttribute="top" secondItem="Eyu-Xi-dAp" secondAttribute="top" id="FeB-dC-ASN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BWS-75-mZi" secondAttribute="trailing" id="V28-0a-ndR"/>
+                                                    <constraint firstAttribute="bottom" secondItem="npa-XD-LlS" secondAttribute="bottom" id="ea6-dF-4i9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="BWS-75-mZi" secondAttribute="bottom" id="r4x-v6-3lw"/>
+                                                    <constraint firstItem="npa-XD-LlS" firstAttribute="leading" secondItem="Eyu-Xi-dAp" secondAttribute="leading" id="ujy-EA-wHs"/>
+                                                    <constraint firstItem="npa-XD-LlS" firstAttribute="top" secondItem="Eyu-Xi-dAp" secondAttribute="top" id="z5N-Mb-FZo"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVA-o8-Ywn" customClass="AEDButton" customModule="EditCraft" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="122.33333333333337" width="361" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="ieN-o3-NAN"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trim"/>
+                                                <connections>
+                                                    <action selector="trimAudioButtonTapped:" destination="dJQ-Mj-fB8" eventType="touchUpInside" id="AEM-dH-I1k"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhD-in-aQ6" customClass="AEDButton" customModule="EditCraft" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="188.33333333333337" width="361" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="5rG-jw-S8L"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Pause"/>
+                                                <connections>
+                                                    <action selector="btnPlaySelected:" destination="dJQ-Mj-fB8" eventType="touchUpInside" id="Wvd-Z0-MZ3"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="433-JF-SgR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="433-JF-SgR" firstAttribute="bottom" secondItem="l8u-a4-ege" secondAttribute="bottom" id="7oX-4P-UpF"/>
+                            <constraint firstItem="l8u-a4-ege" firstAttribute="leading" secondItem="433-JF-SgR" secondAttribute="leading" id="Gmb-cI-cd5"/>
+                            <constraint firstItem="433-JF-SgR" firstAttribute="trailing" secondItem="l8u-a4-ege" secondAttribute="trailing" id="RiR-1p-AaD"/>
+                            <constraint firstItem="l8u-a4-ege" firstAttribute="top" secondItem="433-JF-SgR" secondAttribute="top" id="cX6-Fg-5MH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="EPs-zj-Djp"/>
+                    <connections>
+                        <outlet property="btnPlayPause" destination="JhD-in-aQ6" id="u8p-2q-WNo"/>
+                        <outlet property="btnTrim" destination="hVA-o8-Ywn" id="FjA-h0-h8Y"/>
+                        <outlet property="sliderView" destination="BWS-75-mZi" id="zsT-BB-n9X"/>
+                        <outlet property="waveformView" destination="npa-XD-LlS" id="KEs-07-DEe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hla-Qi-ALH" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3066" y="4"/>
+        </scene>
+        <!--Record View Controller-->
+        <scene sceneID="8ps-Io-xIs">
+            <objects>
+                <viewController storyboardIdentifier="RecordViewController" id="Q4o-2H-SSU" customClass="RecordViewController" customModule="EditCraft" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ng3-CS-JX0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zy-9d-nrI">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YiC-qM-90B">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3vh-rK-UIW">
+                                                <rect key="frame" x="16" y="16" width="361" height="361"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ksy-Ib-nCA">
+                                                        <rect key="frame" x="32" y="32" width="297" height="297"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="ksy-Ib-nCA" secondAttribute="height" multiplier="1:1" id="SeI-gh-wsL"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <directionalEdgeInsets key="directionalLayoutMargins" top="32" leading="32" bottom="32" trailing="32"/>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fj6-Bg-uza">
+                                                <rect key="frame" x="16" y="393" width="361" height="208"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Zco-WK-6aw">
+                                                <rect key="frame" x="16" y="617" width="361" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJa-Cf-wsh" customClass="AEDButton" customModule="EditCraft" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="BmJ-25-NDg"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Save"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQr-5F-7pQ" customClass="AEDButton" customModule="EditCraft" customModuleProvider="target">
+                                                        <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="zK6-DX-U3x"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Reset"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HtH-5J-zFV">
+                                                <rect key="frame" x="16" y="683" width="361" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1z-cV-moU" customClass="AEDButton" customModule="EditCraft" customModuleProvider="target">
+                                                        <rect key="frame" x="150" y="0.0" width="61" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="49T-39-CAi"/>
+                                                            <constraint firstAttribute="width" secondItem="O1z-cV-moU" secondAttribute="height" multiplier="1:1" constant="1" id="j3s-Ui-sk2"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5wA-sc-N0c"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5wA-sc-N0c" firstAttribute="trailing" secondItem="5Zy-9d-nrI" secondAttribute="trailing" id="3qW-Gb-4xc"/>
+                            <constraint firstItem="5Zy-9d-nrI" firstAttribute="top" secondItem="5wA-sc-N0c" secondAttribute="top" id="SoG-ET-iKj"/>
+                            <constraint firstItem="5Zy-9d-nrI" firstAttribute="leading" secondItem="5wA-sc-N0c" secondAttribute="leading" id="aFA-cN-pVz"/>
+                            <constraint firstItem="5wA-sc-N0c" firstAttribute="bottom" secondItem="5Zy-9d-nrI" secondAttribute="bottom" id="jCU-va-YlE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imgRecordView" destination="ksy-Ib-nCA" id="0pu-EX-0NS"/>
+                        <outlet property="recordButton" destination="O1z-cV-moU" id="mUt-Da-jYH"/>
+                        <outlet property="resetButton" destination="aQr-5F-7pQ" id="GCr-Td-PKF"/>
+                        <outlet property="saveButton" destination="XJa-Cf-wsh" id="4zg-BR-M1s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ntJ-rO-rrz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2397.709923664122" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="JhD-in-aQ6">
+            <size key="intrinsicContentSize" width="49" height="34"/>
+        </designable>
+        <designable name="O1z-cV-moU">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="XJa-Cf-wsh">
+            <size key="intrinsicContentSize" width="39" height="34"/>
+        </designable>
+        <designable name="aQr-5F-7pQ">
+            <size key="intrinsicContentSize" width="46" height="34"/>
+        </designable>
+        <designable name="hVA-o8-Ywn">
+            <size key="intrinsicContentSize" width="36" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
