@@ -94,7 +94,13 @@ class AudioEditViewController: BaseVC {
 
 extension AudioEditViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        audioList.count
+        let count = audioList.count
+        if count == 0 {
+            collectionView.setEmptyView(title: R.string.localizable.currentlyNoItemHasBeenAdded())
+        } else {
+            collectionView.restore()
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -129,3 +129,31 @@ extension CMTime {
         return String(format: "%02d:%02d", minutes, seconds)
     }
 }
+
+extension Date {
+    var dayBefore: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+    }
+}
+
+extension UICollectionView {
+    func setEmptyView(title: String = "") {
+        let view = BackgroundView()
+        view.setEmptyView(title: title)
+        
+        self.backgroundView = view;
+        self.backgroundColor = .clear
+    }
+    
+    func restore() {
+        self.backgroundView = nil
+    }
+}
+
+extension Date {
+    func toString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        return dateFormatter.string(from: self)
+    }
+}

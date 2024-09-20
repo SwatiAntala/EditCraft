@@ -78,7 +78,13 @@ extension PhotoEditViewController: PinterestLayoutDelegate {
 extension PhotoEditViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photoList.count
+        let count = photoList.count
+        if count == 0 {
+            collectionView.setEmptyView(title: R.string.localizable.currentlyNoItemHasBeenAdded())
+        } else {
+            collectionView.restore()
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

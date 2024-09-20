@@ -20,6 +20,27 @@ class MainCoordinator: Coordinator {
     
     //Splsh  --> Language  -> Intro  -> Home
     func start() {
+        if let vc = R.storyboard.main.splashVC() {
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: false)
+        }
+    }
+    
+    func redirectIntroduction() {
+        if let vc = R.storyboard.main.introVC() {
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func redirectPremiumSelection() {
+        if let vc = R.storyboard.premium.premiumSelectionVC() {
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func redirectTab() {
         if let vc = R.storyboard.main.tabbarVC() {
             vc.coordinator = self
             navigationController.pushViewController(vc, animated: false)
@@ -47,4 +68,36 @@ class MainCoordinator: Coordinator {
             navigationController.pushViewController(vc, animated: true)
         }
     }
+    
+    func redirectPremium(isFromInitial: Bool = false) {
+        if let vc = R.storyboard.premium.premiumVC() {
+            vc.coordinator = self
+            vc.isFromInitial = isFromInitial
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func redirectPremiumRestore() {
+        if let vc = R.storyboard.premium.premiumRestoreVC() {
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func redirectWebView(url: String, screenTitle: String) {
+        if let vc = R.storyboard.main.webVC() {
+            vc.coordinator = self
+            vc.url = url
+            vc.screenTitle = screenTitle
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func redirectRating() {
+        if let vc = R.storyboard.main.ratingVC() {
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
 }

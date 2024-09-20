@@ -1,11 +1,11 @@
 import UIKit
-import FDWaveformView
 import AVFoundation
 import RangeSeekSlider
+import MBProgressHUD
 
-class TrimAudioViewController: BaseVC, FDWaveformViewDelegate {
+class TrimAudioViewController: BaseVC {
     
-    @IBOutlet weak var waveformView: FDWaveformView!
+    @IBOutlet weak var imgWave: UIImageView!
     @IBOutlet weak var btnTrim: AEDButton!
     @IBOutlet weak var btnPlayPause: AEDButton!
     @IBOutlet weak var sliderView: RangeSeekSlider!
@@ -23,12 +23,7 @@ class TrimAudioViewController: BaseVC, FDWaveformViewDelegate {
         // Load the audio file from bundle
         if let audioFileURL {
             setupAudio(fileURL: audioFileURL)
-            waveformView.audioURL = audioFileURL
-            waveformView.delegate = self
-            waveformView.doesAllowScroll = false
-            waveformView.doesAllowStretch = true
-            waveformView.progressColor = .clear
-            waveformView.wavesColor = .white
+            imgWave.image = R.image.ic_wave()
         }
         
         btnTrim.setAsPrimary()
@@ -74,11 +69,17 @@ class TrimAudioViewController: BaseVC, FDWaveformViewDelegate {
         let endTime = Double(sliderView.selectedMaxValue)
         let duration = endTime - startTime
         guard let audioFileURL else { return }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         trimAudio(inputURL: audioFileURL, startTime: startTime, duration: duration) { success, outputURL, error in
             if success, let outputURL = outputURL {
-                print("Trimmed audio successfully saved to \(outputURL)")
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    print("Trimmed audio successfully saved to \(outputURL)")
+                }
             } else {
-                print("Failed to trim audio: \(error)")
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    print("Failed to trim audio: \(error)")}
             }
         }
     }

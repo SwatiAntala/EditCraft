@@ -6,6 +6,26 @@
   
 */
 
+"OK" = "OK";
+"Error" = "Error";
+"Done" = "Done";
+"Cancel" = "Cancel";
+"Unknown" = "Unknown";
+"All" = "All";
+"Currently, no item has been added" = "Currently, no item has been added.";
+
+// intro
+"Next" = "Next";
+"introTitle1" = "Video Perfection";
+"introTitle2" = "Photo Magic";
+"introTitle3" = "Effortless Audio";
+"introTitle4" = "Go Premium";
+
+"introSubTitle1" = "Edit videos easily, in just a few taps.";
+"introSubTitle2" = "Enhance your photos instantly with easy editing tools.";
+"introSubTitle3" = "Shape your sound effortlessly with simple audio editing.";
+"introSubTitle4" = "Unlock premium features for editing audio, video, and photos, and enjoy an ad-free experience with our exclusive app.";
+"Continue" = "Continue";
 
 // tab
 "Video" = "Video";
@@ -25,3 +45,65 @@
 "File Manager" = "File Manager";
 "Record Audio" = "Record Audio";
 "Trim" = "Trim";
+
+
+// setting
+"Promote App" = "Promote App";
+"Share App" = "Share App";
+"Share App1" = "Share to Your Friend Favorite App";
+"Rate App" = "Rate App";
+"Rate App1" = "Send suggestions & rate your device";
+"lawful" = "lawful";
+"Privacy Policy" = "Privacy Policy";
+"Privacy Policy1" = "Control access to your app";
+"Terms & Condition" = "Terms & Condition";
+"Terms & Condition1" = "A terms & conditions adreement";
+"Help" = "Help";
+"Contact Us" = "Contact Us";
+"Contact Us1" = "Keep your contacts safely backed up";
+
+
+// premium
+"Pay yearly" = "Pay yearly";
+"Pay monthly" = "Pay monthly";
+"Pay weekly" = "Pay weekly";
+"Remove Ads" = "Remove Ads";
+"You can cancel anytime" = "You can cancel anytime.";
+"Subscribe Now" = "Subscribe Now";
+"Terms of use" = "Terms of use";
+"Restore" = "Restore";
+"Unlock" = "Unlock";
+"Edit Craft" = "Edit Craft";
+"Money Save" = "Money Save";
+"Best Popular" = "Best Popular";
+"Regular" = "Regular";
+
+// premium restore
+"You are using the high-quality version" = "You are using the high-quality version";
+"Active Subscription Status" = "Active Subscription Status";
+"Pay for" = "Pay for %@";
+"Per" = "%@ Per %@";
+"Launch Date" = "Launch Date:";
+"Deadline Date" = "Deadline Date:";
+"If You're Using The Pro Version" = "If You're Using The Pro Version And Encounter Any Issues,\nYou Can Utilize The 'Restore' Option.";
+"Yearly" = "Yearly";
+"Monthly" = "Monthly";
+"Weekly" = "Weekly";
+
+"Please update app to the latest version" = "Please update app to the latest version";
+"update" = "UPDATE";
+"congrates" = "CONGRATES";
+"Upgraded Successfully" = "Upgraded Successfully";
+"under maintanance" = "UNDER MAINTANANCE";
+"We are working to fix it. Please try again later" = "We are working to fix it. Please try again later.";
+"No Internet Connection" = "No Internet Connection";
+"Restored Successfully" = "Restored Successfully";
+"We apologize for the inconvenience" = "We apologize for the inconvenience, but the feature you're trying to access is currently undergoing maintenance. We'll notify you as soon as it's available again. Thank you for your patience.";
+"Plese select premium plan" = "Please select premium plan";
+
+
+// rating
+"YOUR OPINION MATTERS TO US!" = "YOUR OPINION MATTERS TO US!";
+"We work super hard to serve you better" = "We work super hard to serve you better and would love to know how would you rate our app?";
+"Feedback" = "Feedback";
+"Rate Now" = "Rate Now";

@@ -52,7 +52,13 @@ class VideoEditViewController: BaseVC {
 
 extension VideoEditViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        videoList.count
+        let count = videoList.count
+        if count == 0 {
+            collectionView.setEmptyView(title: R.string.localizable.currentlyNoItemHasBeenAdded())
+        } else {
+            collectionView.restore()
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

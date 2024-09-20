@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class TabbarViewController: BaseVC {
 
@@ -44,6 +45,10 @@ class TabbarViewController: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.hidesBackButton = true
+        if selectedIndexPath?.item == 0 {
+            setNavBar()
+            navigationItem.leftBarButtonItem = nil
+        }
         navigationController?.setNavigationBarHidden(false,
                                                      animated: false)
     }
@@ -87,6 +92,7 @@ extension TabbarViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return
         }
         
+        updateOrContinue()
         if let cell = collectionView.cellForItem(at: indexPath) {
             animateCellSelection(cell: cell, indexPath: indexPath)
         }
@@ -104,16 +110,16 @@ extension TabbarViewController: UICollectionViewDelegate, UICollectionViewDataSo
                     self.selectedIndexPath = indexPath
                     switch TabItem(rawValue: indexPath.item) {
                     case .videoEdit:
-                        
+                        self.setNavBar()
                         self.setScreen(baseVC: self.videoEditVC!)
                     case .photoEdit:
-                       
+                        self.noNavItem()
                         self.setScreen(baseVC: self.photoEditVC!)
                     case .audioEdit:
-                        
+                        self.noNavItem()
                         self.setScreen(baseVC: self.audioEditVC!)
                     case .setting:
-                        
+                        self.noNavItem()
                         self.setScreen(baseVC: self.settingVC!)
                     case .none:
                         break
@@ -155,5 +161,51 @@ extension TabbarViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .paging
         return section
+    }
+}
+
+extension TabbarViewController {
+    func setNavBar() {
+        let btnMore = UIButton()
+        btnMore.setImage(R.image.ic_premium_home(), for: .normal)
+        btnMore.addTarget(self, action: #selector(btnPremiumSelected),
+                               for: .touchUpInside)
+        setConstaint(btnMore, constant: 32)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnMore)
+    }
+
+    @objc func btnPremiumSelected() {
+        if AppData.sharedInstance.isPaid == false {
+            coordinator?.redirectPremium()
+        } else {
+            coordinator?.redirectPremiumRestore()
+        }
+    }
+    
+    func noNavItem() {
+        navigationItem.rightBarButtonItems = []
+        navigationItem.leftBarButtonItems = []
+    }
+}
+
+extension TabbarViewController {
+    //MARK: Other Method
+    func updateOrContinue() {
+        showAds()
+    }
+    
+    //MARK: INTRESTIAL AD METHOD
+    func showAds() {
+        if AppData.sharedInstance.isPaid == false && AppData.sharedInstance.isAdmobAd == "YES" && AppData.sharedInstance.strIntrestialShow == "YES" {
+            AdmobManager.shared.showAds(vw: self, str: .tab)
+        } else {
+            //coordinator?.redirectTab()
+        }
+    }
+    
+    func sendToAdmob(str : HomeNavigation) {
+        if AppData.sharedInstance.isPaid == false && AppData.sharedInstance.isAdmobAd == "YES" && AppData.sharedInstance.strIntrestialShow == "YES" {
+            AdmobManager.shared.requestAds()
+        }
     }
 }
