@@ -16,15 +16,9 @@ class SplashViewController: BaseVC {
     var secondsRemaining: Int = 5
     var countdownTimer: Timer?
     
-    override func loadView() {
-        super.loadView()
-        setUI()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setUI()
         startTimer()
         initializeAds()
     }
@@ -34,12 +28,6 @@ class SplashViewController: BaseVC {
         if AppData.sharedInstance.isFullscreenAdOpen == false {
             navigationController?.setNavigationBarHidden(true, animated: false)
         }
-    }
-    
-    func setUI() {
-        // Load and display the GIF
-//        let url = R.file.splashGif()
-//        imgView.sd_setImage(with: url)
     }
     
     //MARK: Other Method
