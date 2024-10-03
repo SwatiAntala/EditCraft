@@ -9,7 +9,7 @@ import UIKit
 
 class IntroViewController: BaseVC {
 
-    @IBOutlet weak var btnNext: UIButton!
+    @IBOutlet weak var btnNext: ECButton!
     @IBOutlet weak var collView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Int, Introduction>!
 
@@ -37,9 +37,7 @@ class IntroViewController: BaseVC {
     }
     
     func setColor() {
-        btnNext.layer.cornerRadius = 20
-        btnNext.setTitleColor(AppColor.white, for: .normal)
-        btnNext.backgroundColor = AppColor.theme
+        btnNext.setAsPrimary()
     }
     
     @IBAction func btnNextSelected(_ sender: UIButton) {

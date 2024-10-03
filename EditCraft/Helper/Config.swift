@@ -30,7 +30,7 @@ struct Config {
     }
 }
 
-let APP_IDENTIFIER = "com.swati.parallalspace" // set app identifier
+let APP_IDENTIFIER = "com.swati.dualspace" // set app identifier
 let API_Key = "ABCD&123@45L*KJH%G98765"
 
 

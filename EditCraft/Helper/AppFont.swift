@@ -11,7 +11,9 @@ import UIKit
 enum AppFont {
     
     static func getFont(style: UIFont.TextStyle,
-                              weight: UIFont.Weight = .regular) -> UIFont? {
+                        size: CGFloat? = .zero,
+                        weight: UIFont.Weight = .regular) -> UIFont? {
+        
         var fontName = ""
         
         switch weight {
@@ -21,10 +23,16 @@ enum AppFont {
             default: break
         }
         
-        var descriptor = UIFontDescriptor(name: fontName, size: UIFont.preferredFont(forTextStyle: style).pointSize)
-        descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits:
-                                                    [UIFontDescriptor.TraitKey.weight: weight]])
-        return UIFont(descriptor: descriptor, size: UIFont.preferredFont(forTextStyle: style).pointSize)
+        if let size, size != .zero {
+            var descriptor = UIFontDescriptor(name: fontName, size: size)
+            descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits:
+                                                        [UIFontDescriptor.TraitKey.weight: weight]])
+            return UIFont(descriptor: descriptor, size: size)
+        } else {
+            var descriptor = UIFontDescriptor(name: fontName, size: UIFont.preferredFont(forTextStyle: style).pointSize)
+            descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits:
+                                                        [UIFontDescriptor.TraitKey.weight: weight]])
+            return UIFont(descriptor: descriptor, size: UIFont.preferredFont(forTextStyle: style).pointSize)
+        }
     }
-    
 }

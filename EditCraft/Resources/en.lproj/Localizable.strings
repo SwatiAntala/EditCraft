@@ -107,3 +107,17 @@
 "We work super hard to serve you better" = "We work super hard to serve you better and would love to know how would you rate our app?";
 "Feedback" = "Feedback";
 "Rate Now" = "Rate Now";
+
+
+// special offer 12
+"expires in" = "EXPIRES IN";
+"Day" = "Day";
+"hrs" = "hrs";
+"min" = "min";
+"sec" = "sec";
+"Regular Price" = "Regular Price";
+"Offer Price" = "Offer Price";
+"special offer" = "SPECIAL OFFER";
+"Claim Now" = "Claim Now!";
+"See Regular Plan" = "See Regular Plan";
+"Limited Time Offer" = "Limited Time Offer";

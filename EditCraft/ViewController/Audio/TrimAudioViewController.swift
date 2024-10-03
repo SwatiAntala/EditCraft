@@ -41,6 +41,8 @@ class TrimAudioViewController: BaseVC {
         sliderView.handleColor = AppColor.theme
         sliderView.minValue = 0.0
         sliderView.selectedMinValue = 0.0
+        sliderView.minLabelFont = AppFont.getFont(style: .body)!
+        sliderView.maxLabelFont = AppFont.getFont(style: .body)!
         if let audioFileURL {
             sliderView.maxValue = CGFloat(Float(CMTimeGetSeconds(AVAsset(url: audioFileURL).duration)))
             sliderView.selectedMaxValue = CGFloat(Float(CMTimeGetSeconds(AVAsset(url: audioFileURL).duration)))

@@ -28,8 +28,8 @@ class SettingView: VICustomView {
     }
     
     func setFont() {
-        lblTitle.font = AppFont.getFont(style: .headline, weight: .medium)
-        lblSubTitle.font = AppFont.getFont(style: .footnote, weight: .medium)
+        lblTitle.font = AppFont.getFont(style: .title1, weight: .medium)
+        lblSubTitle.font = AppFont.getFont(style: .title2, weight: .medium)
     }
     
     func setColor() {

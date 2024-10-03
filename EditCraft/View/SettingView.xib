@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -19,30 +19,30 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="271"/>
+            <rect key="frame" x="0.0" y="0.0" width="505" height="271"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eiC-fr-jJR">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="237"/>
+                    <rect key="frame" x="0.0" y="0.0" width="505" height="251"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-HK-1rt">
-                            <rect key="frame" x="8" y="123" width="50" height="50"/>
+                            <rect key="frame" x="16" y="87.5" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="FpC-HK-1rt" secondAttribute="height" id="W9G-pJ-PfF"/>
-                                <constraint firstAttribute="height" constant="50" id="gVQ-Tx-5E5"/>
+                                <constraint firstAttribute="height" constant="100" id="gVQ-Tx-5E5"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="WBd-mX-HSw">
-                            <rect key="frame" x="74" y="125.66666666666667" width="271" height="44.666666666666671"/>
+                            <rect key="frame" x="132" y="115" width="309" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEQ-rq-Cyj">
-                                    <rect key="frame" x="0.0" y="0.0" width="271" height="20.333333333333332"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="309" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9G0-IG-kro">
-                                    <rect key="frame" x="0.0" y="24.333333333333329" width="271" height="20.333333333333329"/>
+                                    <rect key="frame" x="0.0" y="24.5" width="309" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -50,17 +50,15 @@
                             </subviews>
                         </stackView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2kF-lg-4LX">
-                            <rect key="frame" x="361" y="136" width="24" height="24"/>
+                            <rect key="frame" x="457" y="121.5" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="2kF-lg-4LX" secondAttribute="height" id="ePH-sw-zGf"/>
-                                <constraint firstAttribute="height" constant="24" id="gKV-XD-urg"/>
+                                <constraint firstAttribute="height" constant="32" id="gKV-XD-urg"/>
+                                <constraint firstAttribute="width" secondItem="2kF-lg-4LX" secondAttribute="height" id="xAJ-rH-wv5"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="2kF-lg-4LX" firstAttribute="width" secondItem="2kF-lg-4LX" secondAttribute="height" id="xAJ-rH-wv5"/>
-                    </constraints>
-                    <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                    <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -71,7 +69,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eiC-fr-jJR" secondAttribute="trailing" id="r0z-tH-UCj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-83.206106870229007" y="224.29577464788733"/>
+            <point key="canvasLocation" x="-124.7560975609756" y="223.98305084745763"/>
         </view>
     </objects>
 </document>

@@ -12,6 +12,7 @@ import MobileCoreServices
 import AVKit
 import Photos
 import MediaPlayer
+import UniformTypeIdentifiers // For UTType
 
 class OptiViewController: BaseVC {
     
@@ -107,7 +108,7 @@ class OptiViewController: BaseVC {
     
     //TextView
     @IBOutlet weak var vw_AddTextView: UIView!
-    @IBOutlet weak var txtfld_Addtxt: UITextField!
+    @IBOutlet weak var txtfld_Addtxt: WMTextField!
     @IBOutlet weak var textPosition_Collvw: UICollectionView!
     
     //Video Crop View
@@ -118,7 +119,9 @@ class OptiViewController: BaseVC {
     @IBOutlet weak var videoFrames_Vw: UIView!
     
     // Array Declartion
-    var menuItems = ["filterW","cropW","audiomergeW","speedW","textW","stickerW", "videomergeW", "transitionW"]
+    var menuItems = ["filterW","cropW","audiomergeW","speedW",
+                     /*"textW","stickerW",*/
+                     "videomergeW", "transitionW"]
     
     var filterNames = ["Luminance","Chrome","Fade","Instant","Noir","Process","Tonal","Transfer","SepiaTone","ColorClamp","ColorInvert","ColorMonochrome","SpotLight","ColorPosterize","BoxBlur","DiscBlur","GaussianBlur","MaskedVariableBlur","MedianFilter","MotionBlur","NoiseReduction"]
     
@@ -161,6 +164,10 @@ class OptiViewController: BaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(OptiViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(OptiViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+        txtfld_Addtxt.layer.borderColor = AppColor.white.cgColor
+        txtfld_Addtxt.layer.borderWidth = 1.5
+        txtfld_Addtxt.layer.cornerRadius = cornerRadius
+        txtfld_Addtxt.addView(at: .all)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -295,22 +302,40 @@ class OptiViewController: BaseVC {
         videoPickerController.modalPresentationStyle = .custom
         self.present(videoPickerController, animated: true, completion: nil)
     }
+    
+    
     func cameraViewAction() {
+        // Pause the AVPlayer if it's playing
         self.avplayer.pause()
-        let videoPickerController = UIImagePickerController()
-        videoPickerController.delegate = self
-        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
+
+        // Check if the camera is available
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             DispatchQueue.main.async {
                 OptiToast.showNegativeMessage(message: OptiConstant().cameranotavailable)
             }
             return
         }
+
+        // Get available media types for the camera
+        guard let availableMediaTypes = UIImagePickerController.availableMediaTypes(for: .camera),
+              availableMediaTypes.contains(UTType.movie.identifier) else {
+            DispatchQueue.main.async {
+                OptiToast.showNegativeMessage(message: "Video capture is not available on this device.")
+            }
+            return
+        }
+
+        // Configure and present the UIImagePickerController
+        let videoPickerController = UIImagePickerController()
+        videoPickerController.delegate = self
         videoPickerController.allowsEditing = true
         videoPickerController.sourceType = .camera
-        videoPickerController.mediaTypes = [kUTTypeMovie as String]
+        videoPickerController.mediaTypes = [UTType.movie.identifier] // Use UTType.movie
         videoPickerController.videoMaximumDuration = TimeInterval(240.0)
         videoPickerController.cameraCaptureMode = .video
         videoPickerController.modalPresentationStyle = .fullScreen
+
+        // Present the video picker
         self.present(videoPickerController, animated: true, completion: nil)
     }
     
@@ -487,7 +512,13 @@ class OptiViewController: BaseVC {
                 self.isMergeClicked = false
                 OptiVideoEditor().mergeTwoVideosArry(arrayVideos: assetArray, success: { (url) in
                     DispatchQueue.main.async {
-                        let saveBarBtnItm = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveActionforEditedVideo))
+                        let saveBarBtnItm = UIBarButtonItem(title: "Save", 
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(self.saveActionforEditedVideo))
+                        saveBarBtnItm.setTitleTextAttributes([.font: AppFont.getFont(style: .title1,
+                                                                               weight: .bold) as Any],
+                                                       for: .normal)
                         self.navigationItem.rightBarButtonItem  = saveBarBtnItm
                         self.progress_Vw.progress = 1.0
                         self.slctVideoUrl = url
@@ -521,7 +552,13 @@ class OptiViewController: BaseVC {
                         self.setTimer()
                         OptiVideoEditor().addfiltertoVideo(strfiltername: strSelectedEffect, strUrl: videourl, success: { (url) in
                             DispatchQueue.main.async {
-                                let saveBarBtnItm = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveActionforEditedVideo))
+                                let saveBarBtnItm = UIBarButtonItem(title: "Save", 
+                                                                    style: .done,
+                                                                    target: self,
+                                                                    action: #selector(self.saveActionforEditedVideo))
+                                saveBarBtnItm.setTitleTextAttributes([.font: AppFont.getFont(style: .title1,
+                                                                                       weight: .bold) as Any],
+                                                               for: .normal)
                                 self.navigationItem.rightBarButtonItem  = saveBarBtnItm
                                 self.progress_Vw.progress = 1.0
                                 self.slctVideoUrl = url
@@ -551,7 +588,13 @@ class OptiViewController: BaseVC {
                         let num = strSelectedSpeed.toDouble()
                         OptiVideoEditor().videoScaleAssetSpeed(fromURL: videourl, by: num ?? 1.0, success: { (url) in
                             DispatchQueue.main.async {
-                                let saveBarBtnItm = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveActionforEditedVideo))
+                                let saveBarBtnItm = UIBarButtonItem(title: "Save", 
+                                                                    style: .done,
+                                                                    target: self,
+                                                                    action: #selector(self.saveActionforEditedVideo))
+                                saveBarBtnItm.setTitleTextAttributes([.font: AppFont.getFont(style: .title1,
+                                                                                       weight: .bold) as Any],
+                                                               for: .normal)
                                 self.navigationItem.rightBarButtonItem  = saveBarBtnItm
                                 self.progress_Vw.progress = 1.0
                                 self.addVideoPlayer(videoUrl: url, to: self.video_vw)
@@ -578,7 +621,13 @@ class OptiViewController: BaseVC {
                         self.setTimer()
                         OptiVideoEditor().addStickerorTexttoVideo(videoUrl: videourl, watermarkText: txtfld_Addtxt.text ?? "", imageName: "", position: selectedTextPosition, success: { (url) in
                             DispatchQueue.main.async {
-                                let saveBarBtnItm = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveActionforEditedVideo))
+                                let saveBarBtnItm = UIBarButtonItem(title: "Save",
+                                                                    style: .done,
+                                                                    target: self,
+                                                                    action: #selector(self.saveActionforEditedVideo))
+                                saveBarBtnItm.setTitleTextAttributes([.font: AppFont.getFont(style: .title1,
+                                                                                       weight: .bold) as Any],
+                                                               for: .normal)
                                 self.navigationItem.rightBarButtonItem  = saveBarBtnItm
                                 self.progress_Vw.progress = 1.0
                                 self.slctVideoUrl = url
@@ -616,7 +665,13 @@ class OptiViewController: BaseVC {
                         self.setTimer()
                         OptiVideoEditor().addStickerorTexttoVideo(videoUrl: videourl, watermarkText: "", imageName: strSelectedSticker, position: selectedStickerPosition, success: { (url) in
                             DispatchQueue.main.async {
-                                let saveBarBtnItm = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveActionforEditedVideo))
+                                let saveBarBtnItm = UIBarButtonItem(title: "Save", 
+                                                                    style: .done,
+                                                                    target: self,
+                                                                    action: #selector(self.saveActionforEditedVideo))
+                                saveBarBtnItm.setTitleTextAttributes([.font: AppFont.getFont(style: .title1,
+                                                                                       weight: .bold) as Any],
+                                                               for: .normal)
                                 self.navigationItem.rightBarButtonItem  = saveBarBtnItm
                                 self.progress_Vw.progress = 1.0
                                 self.slctVideoUrl = url
@@ -655,7 +710,13 @@ class OptiViewController: BaseVC {
                     self.setTimer()
                     OptiVideoEditor().trimVideo(sourceURL: videourl, startTime:cropsliderminimumValue, endTime: cropslidermaximumValue, success: { (url) in
                         DispatchQueue.main.async {
-                            let saveBarBtnItm = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveActionforEditedVideo))
+                            let saveBarBtnItm = UIBarButtonItem(title: "Save", 
+                                                                style: .done,
+                                                                target: self,
+                                                                action: #selector(self.saveActionforEditedVideo))
+                            saveBarBtnItm.setTitleTextAttributes([.font: AppFont.getFont(style: .title1,
+                                                                                   weight: .bold) as Any],
+                                                           for: .normal)
                             self.navigationItem.rightBarButtonItem  = saveBarBtnItm
                             self.progress_Vw.progress = 1.0
                             self.slctVideoUrl = url
@@ -686,7 +747,13 @@ class OptiViewController: BaseVC {
                     self.setTimer()
                     OptiVideoEditor().transitionAnimation(videoUrl: videourl, animation: true, type: selectedTransitionType, playerSize: self.video_vw.frame, success: { (url) in
                         DispatchQueue.main.async {
-                            let saveBarBtnItm = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveActionforEditedVideo))
+                            let saveBarBtnItm = UIBarButtonItem(title: "Save", 
+                                                                style: .done,
+                                                                target: self,
+                                                                action: #selector(self.saveActionforEditedVideo))
+                            saveBarBtnItm.setTitleTextAttributes([.font: AppFont.getFont(style: .title1,
+                                                                                   weight: .bold) as Any],
+                                                           for: .normal)
                             self.navigationItem.rightBarButtonItem  = saveBarBtnItm
                             self.progress_Vw.progress = 1.0
                             self.slctVideoUrl = url
@@ -994,25 +1061,10 @@ extension OptiViewController : UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        switch collectionView.tag {
-        case 1:
-            return UIEdgeInsets(top: 2, left: 5, bottom: 2, right: 5)
-        case 2:
-            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        case 3:
-            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        case 4:
-            return UIEdgeInsets(top: 2, left: 5, bottom: 2, right: 5)
-        case 5:
-            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        case 6:
-            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        case 7:
-            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        default:
-            return UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        }
-        
+        return UIEdgeInsets(top: 16,
+                            left: 16,
+                            bottom: 16,
+                            right: 16)
     }
 }
 extension OptiViewController : UICollectionViewDelegate {
@@ -1117,53 +1169,53 @@ extension OptiViewController : UICollectionViewDelegate {
                             OptiToast.showNegativeMessage(message: OptiConstant().slctvideospeed)
                         }
                     }
+//                case 4:
+//                    // addTextView
+//                    if (self.slctVideoUrl != nil) {
+//                        self.avplayer.pause()
+//                        self.sticker_Vw.isHidden = true
+//                        self.effect_Vw.isHidden = true
+//                        self.speed_Vw.isHidden = true
+//                        self.mergeView.isHidden = true
+//                        self.transition_Vw.isHidden = true
+//                        self.crop_Vw.isHidden = true
+//                        self.vw_AddTextView.isHidden = false
+//                        self.merge_Musicbacvw.isHidden = true
+//                        self.textPosition_Collvw.reloadData()
+//                        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseIn],animations: {
+//                            self.functionViewTopConstraint.constant = self.menu_Vw.frame.height * -1
+//                            self.vw_function.layoutIfNeeded()
+//                        }, completion: nil)
+//                        
+//                    }else{
+//                        DispatchQueue.main.async {
+//                            OptiToast.showNegativeMessage(message: OptiConstant().slctvideoaddtxt)
+//                        }
+//                    }
+//                case 5:
+//                    // addStickerView
+//                    if (self.slctVideoUrl != nil) {
+//                        self.avplayer.pause()
+//                        self.sticker_Vw.isHidden = false
+//                        self.effect_Vw.isHidden = true
+//                        self.speed_Vw.isHidden = true
+//                        self.mergeView.isHidden = true
+//                        self.transition_Vw.isHidden = true
+//                        self.crop_Vw.isHidden = true
+//                        self.vw_AddTextView.isHidden = true
+//                        self.merge_Musicbacvw.isHidden = true
+//                        self.sticker_Collvw.reloadData()
+//                        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseIn],animations: {
+//                            self.functionViewTopConstraint.constant = self.menu_Vw.frame.height * -1
+//                            self.vw_function.layoutIfNeeded()
+//                        }, completion: nil)
+//                        
+//                    }else{
+//                        DispatchQueue.main.async {
+//                            OptiToast.showNegativeMessage(message: OptiConstant().slctvideosticker)
+//                        }
+//                    }
                 case 4:
-                    // addTextView
-                    if (self.slctVideoUrl != nil) {
-                        self.avplayer.pause()
-                        self.sticker_Vw.isHidden = true
-                        self.effect_Vw.isHidden = true
-                        self.speed_Vw.isHidden = true
-                        self.mergeView.isHidden = true
-                        self.transition_Vw.isHidden = true
-                        self.crop_Vw.isHidden = true
-                        self.vw_AddTextView.isHidden = false
-                        self.merge_Musicbacvw.isHidden = true
-                        self.textPosition_Collvw.reloadData()
-                        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseIn],animations: {
-                            self.functionViewTopConstraint.constant = self.menu_Vw.frame.height * -1
-                            self.vw_function.layoutIfNeeded()
-                        }, completion: nil)
-                        
-                    }else{
-                        DispatchQueue.main.async {
-                            OptiToast.showNegativeMessage(message: OptiConstant().slctvideoaddtxt)
-                        }
-                    }
-                case 5:
-                    // addStickerView
-                    if (self.slctVideoUrl != nil) {
-                        self.avplayer.pause()
-                        self.sticker_Vw.isHidden = false
-                        self.effect_Vw.isHidden = true
-                        self.speed_Vw.isHidden = true
-                        self.mergeView.isHidden = true
-                        self.transition_Vw.isHidden = true
-                        self.crop_Vw.isHidden = true
-                        self.vw_AddTextView.isHidden = true
-                        self.merge_Musicbacvw.isHidden = true
-                        self.sticker_Collvw.reloadData()
-                        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseIn],animations: {
-                            self.functionViewTopConstraint.constant = self.menu_Vw.frame.height * -1
-                            self.vw_function.layoutIfNeeded()
-                        }, completion: nil)
-                        
-                    }else{
-                        DispatchQueue.main.async {
-                            OptiToast.showNegativeMessage(message: OptiConstant().slctvideosticker)
-                        }
-                    }
-                case 6:
                     // Merge two Videos
                     //                if (self.slctVideoUrl != nil) {
                     self.avplayer.pause()
@@ -1185,7 +1237,7 @@ extension OptiViewController : UICollectionViewDelegate {
                         self.functionViewTopConstraint.constant = self.menu_Vw.frame.height * -1
                         self.vw_function.layoutIfNeeded()
                     }, completion: nil)
-                case 7:
+                case 5:
                     // addTransitionView
                     if (self.slctVideoUrl != nil) {
                         self.avplayer.pause()

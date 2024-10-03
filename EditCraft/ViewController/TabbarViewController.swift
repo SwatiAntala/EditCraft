@@ -153,7 +153,7 @@ extension TabbarViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4),
-                                               heightDimension: .absolute(64))
+                                               heightDimension: .absolute(120))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
@@ -170,15 +170,19 @@ extension TabbarViewController {
         btnMore.setImage(R.image.ic_premium_home(), for: .normal)
         btnMore.addTarget(self, action: #selector(btnPremiumSelected),
                                for: .touchUpInside)
-        setConstaint(btnMore, constant: 32)
+        setConstaint(btnMore, constant: 45)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnMore)
     }
 
     @objc func btnPremiumSelected() {
-        if AppData.sharedInstance.isPaid == false {
-            coordinator?.redirectPremium()
-        } else {
+        if AppData.sharedInstance.isPaid == true {
             coordinator?.redirectPremiumRestore()
+        } else {
+            if showOfferScreen {
+                coordinator?.redirectSpecialOffer()
+            } else {
+                coordinator?.redirectPremium()
+            }
         }
     }
     

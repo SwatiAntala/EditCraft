@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,38 +14,22 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_splash" translatesAutoresizingMaskIntoConstraints="NO" id="4Vr-JK-peI">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_splash_secordary" translatesAutoresizingMaskIntoConstraints="NO" id="N2h-ch-uQE">
-                                <rect key="frame" x="136.66666666666666" y="366" width="119.99999999999997" height="120"/>
+                                <rect key="frame" x="310" y="490" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="N2h-ch-uQE" secondAttribute="height" multiplier="1:1" id="IoP-BQ-8lk"/>
-                                    <constraint firstAttribute="width" constant="120" id="k5E-eq-OwB"/>
+                                    <constraint firstAttribute="width" constant="200" id="k5E-eq-OwB"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Craft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lns-TW-jFU">
-                                <rect key="frame" x="32" y="414" width="329" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" name="black"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Uc-In-EpJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4Vr-JK-peI" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="6Me-dt-Osy"/>
-                            <constraint firstItem="Lns-TW-jFU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="IeI-C3-NXR"/>
                             <constraint firstItem="N2h-ch-uQE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="MjU-gD-tNi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Lns-TW-jFU" secondAttribute="trailing" constant="16" id="NIp-jj-L9s"/>
-                            <constraint firstItem="Lns-TW-jFU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YXe-Mo-lbO"/>
-                            <constraint firstItem="4Vr-JK-peI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="fdd-ub-0j7"/>
                             <constraint firstItem="N2h-ch-uQE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="igS-Mn-z7x"/>
-                            <constraint firstAttribute="trailing" secondItem="4Vr-JK-peI" secondAttribute="trailing" id="rMx-uP-ZHK"/>
-                            <constraint firstItem="Lns-TW-jFU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="16" id="vcp-fd-nUy"/>
-                            <constraint firstAttribute="bottom" secondItem="4Vr-JK-peI" secondAttribute="bottom" id="vy9-4t-EMV"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -55,11 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="img_splash" width="564" height="1002"/>
         <image name="img_splash_secordary" width="512" height="512"/>
-        <namedColor name="black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

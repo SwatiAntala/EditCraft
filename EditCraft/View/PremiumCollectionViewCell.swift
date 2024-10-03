@@ -11,37 +11,27 @@ class PremiumCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblPrice: UILabel!
-    @IBOutlet weak var btnPlanName: UIButton!
+    @IBOutlet weak var lblActualPrice: UILabel!
+    @IBOutlet weak var lblOfferPrice: UILabel!
+    @IBOutlet weak var btnPlanName: ECButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        DispatchQueue.main.async {
-            self.applyDashedBorder(to: self.btnPlanName,
-                                   cornerRadius: cornerRadius,
-                                   dashPattern: [3, 6],
-                                   borderColor: AppColor.Text.secondary.cgColor,
-                                   borderWidth: 1)
-        }
-    }
-    
     func setUI() {
         setFont()
         setColor()
         
-        if let superview = lblTitle.superview?.superview {
+        if let superview = lblTitle.superview?.superview?.superview {
             superview.backgroundColor = AppColor.background
             superview.layer.cornerRadius = cornerRadius
         }
     }
     
     func updateUI(isSelected: Bool = false) {
-        if let superview = lblTitle.superview?.superview {
+        if let superview = lblTitle.superview?.superview?.superview {
             if isSelected {
                 superview.layer.borderColor = AppColor.theme.cgColor
                 superview.layer.borderWidth = 1
@@ -53,41 +43,50 @@ class PremiumCollectionViewCell: UICollectionViewCell {
     }
     
     func setFont() {
-        lblTitle.font = AppFont.getFont(style: .footnote, weight: .medium)
-        
-        lblPrice.font = AppFont.getFont(style: .body, weight: .medium)
-        
-        btnPlanName.titleLabel?.font = AppFont.getFont(style: .footnote, weight: .medium)
+        lblTitle.font = AppFont.getFont(style: .title2, weight: .medium)
+        lblActualPrice.font = AppFont.getFont(style: .title2, weight: .medium)
+        lblOfferPrice.font = AppFont.getFont(style: .title2, size: 32, weight: .bold)
+        btnPlanName.titleLabel?.font = AppFont.getFont(style: .title2,
+                                                       weight: .bold)
     }
     
     func setColor() {
         lblTitle.textColor = AppColor.Text.secondary
-        lblPrice.textColor = AppColor.white
-        lblPrice.backgroundColor = AppColor.backgroundSecondary
+        lblActualPrice.textColor = AppColor.Text.secondary
+        lblOfferPrice.textColor = AppColor.white
+        lblOfferPrice.backgroundColor = AppColor.backgroundSecondary
+        btnPlanName.setTitleColor(AppColor.white, for: .normal)
+        btnPlanName.layer.cornerRadius = cornerRadius
     }
     
     func configData(data: Premium) {
         lblTitle.text = data.title
         btnPlanName.setTitle(data.subTitle, for: .normal)
-        btnPlanName.setTitleColor(data.color, for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            applyDashedBorder(to: self.btnPlanName,
+                              cornerRadius: cornerRadius,
+                              dashPattern: [4,6],
+                              borderColor: data.color.cgColor,
+                              borderWidth: 1.5)
+        }
+        
         imgView.image = data.image
-        lblPrice.text = data.getPrice()
+        lblOfferPrice.text = data.getPrice()
+        
+        
+        let discountPrice = Double(data.getInAppPrice()) ?? 0.0
+        let percentage = Double(AppData.sharedInstance.offerInAppPercentage) ?? 0.0
+        let decimal = 1 - (percentage/100.0)
+        
+        let regularPrice = discountPrice/decimal
+    
+        let result = data.getPrice().getAmountAndSymbol()
+        let symbol = result.symbol
+        
+        lblActualPrice.attributedText = formatPrice(regularPrice, with: symbol).strikeThrough()
     }
     
-    func applyDashedBorder(to view: UIView, cornerRadius: CGFloat, dashPattern: [NSNumber], borderColor: CGColor, borderWidth: CGFloat) {
-           let shapeLayer = CAShapeLayer()
-           shapeLayer.strokeColor = borderColor
-           shapeLayer.fillColor = nil
-           shapeLayer.lineDashPattern = dashPattern
-           shapeLayer.lineWidth = borderWidth
-           shapeLayer.frame = view.bounds
-           shapeLayer.path = UIBezierPath(roundedRect: view.bounds, cornerRadius: cornerRadius).cgPath
-           
-           // Apply the corner radius to the button's layer
-           view.layer.cornerRadius = cornerRadius
-           view.layer.masksToBounds = true
-           
-           // Add the dashed border as a sublayer
-           view.layer.addSublayer(shapeLayer)
-       }
+    func formatPrice(_ price: Double, with symbol: String) -> String {
+        return String(format: "\(symbol)%.2f", price)
+    }
 }

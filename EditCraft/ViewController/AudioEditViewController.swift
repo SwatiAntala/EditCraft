@@ -43,6 +43,7 @@ class AudioEditViewController: BaseVC {
     
     func setButton() {
         actionButton.buttonColor = AppColor.theme
+        actionButton.buttonDiameter = 100
         actionButton.buttonImageColor = AppColor.white
         actionButton.buttonImage = R.image.ic_audio_edit()?.withRenderingMode(.alwaysTemplate)
         actionButton.delegate = self
@@ -59,6 +60,10 @@ class AudioEditViewController: BaseVC {
         actionButton.addItem(title: PickAudio.recordAudio.title,
                              image: PickAudio.recordAudio.image) { item in
             self.coordinator?.redirectRecordAudio()
+        }
+        
+        actionButton.items.forEach { item in
+            item.titleLabel.font = AppFont.getFont(style: .title2, weight: .bold)
         }
         
         actionButton.display(inViewController: self,
@@ -166,7 +171,7 @@ extension AudioEditViewController {
 extension AudioEditViewController: EditAudioCellDelegate {
     func btnMoreSelected(fromCell cell: EditAudioCollectionViewCell, viaSender sender: UIButton) {
         if let indexPath = collView.indexPath(for: cell) {
-            showActionSheet(indexPath: indexPath)
+            showActionSheet(indexPath: indexPath, fromCell: cell)
         }
     }
     
@@ -200,7 +205,7 @@ extension AudioEditViewController: EditAudioCellDelegate {
         }
     }
     
-    func showActionSheet(indexPath: IndexPath) {
+    func showActionSheet(indexPath: IndexPath, fromCell cell: EditAudioCollectionViewCell) {
         // Create the action sheet
         let actionSheet = UIAlertController(title: "Actions",
                                             message: nil,
@@ -221,7 +226,7 @@ extension AudioEditViewController: EditAudioCellDelegate {
             let item = self.audioList[indexPath.item]
             let obj = fetchFromFileManager(vimixed: item)
             guard let url = obj?.url else { return }
-            self.shareAudioFile(fileURL: url)
+            self.shareAudioFile(fileURL: url, fromCell: cell)
         }
         
         actionSheet.addAction(shareAction)
@@ -232,6 +237,7 @@ extension AudioEditViewController: EditAudioCellDelegate {
                                          handler: nil)
         actionSheet.addAction(cancelAction)
         
+        actionSheet.popoverPresentationController?.sourceView = cell
         // Present the action sheet
         present(actionSheet,
                 animated: true,
@@ -260,8 +266,9 @@ extension AudioEditViewController: EditAudioCellDelegate {
         }
     }
     
-    func shareAudioFile(fileURL: URL) {
+    func shareAudioFile(fileURL: URL, fromCell cell: EditAudioCollectionViewCell) {
         let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = cell
         present(activityViewController, animated: true)
         
     }

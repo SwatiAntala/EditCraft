@@ -37,6 +37,12 @@ struct MTUserDefaults {
     @UserDefault(Key.UserDefaults.kIsOnBoardingCompleted, defaultValue: false)
     static var isOnBoardingCompleted: Bool
 
+    
+    @UserDefault(Key.UserDefaults.kSpecialOffer, defaultValue: 0)
+    static var specialOffer: Int
+    
+    @UserDefault(Key.UserDefaults.kSpecialOfferFinished, defaultValue: false)
+    static var isSpecialOfferFinished: Bool
 }
 
 func newJSONDecoder() -> JSONDecoder {

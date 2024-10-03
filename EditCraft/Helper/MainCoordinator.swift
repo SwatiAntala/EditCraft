@@ -34,7 +34,7 @@ class MainCoordinator: Coordinator {
     }
     
     func redirectPremiumSelection() {
-        if let vc = R.storyboard.premium.premiumSelectionVC() {
+        if let vc = R.storyboard.premiumRestore.premiumSelectionVC() {
             vc.coordinator = self
             navigationController.pushViewController(vc, animated: true)
         }
@@ -78,7 +78,14 @@ class MainCoordinator: Coordinator {
     }
     
     func redirectPremiumRestore() {
-        if let vc = R.storyboard.premium.premiumRestoreVC() {
+        if let vc = R.storyboard.premiumRestore.premiumRestoreVC() {
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func redirectSpecialOffer() {
+        if let vc = R.storyboard.offer.specialOfferVC() {
             vc.coordinator = self
             navigationController.pushViewController(vc, animated: true)
         }

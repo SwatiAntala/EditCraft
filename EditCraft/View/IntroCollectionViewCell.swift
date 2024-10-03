@@ -29,10 +29,10 @@ class IntroCollectionViewCell: UICollectionViewCell {
     }
     
     func setFont() {
-        lblTitle.font = AppFont.getFont(style: .title1,
+        lblTitle.font = AppFont.getFont(style: .largeTitle,
                                               weight: .bold)
         
-        lblSubTitle.font = AppFont.getFont(style: .title3,
+        lblSubTitle.font = AppFont.getFont(style: .title1,
                                                  weight: .semibold)
     }
     

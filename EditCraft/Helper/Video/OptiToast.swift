@@ -18,7 +18,12 @@ class OptiToast {
               let sceneDelegate = windowScene.delegate as? SceneDelegate,
               let mainCoordinator = sceneDelegate.mainCoordinator else { return }
         
-        mainCoordinator.navigationController.visibleViewController?.view.makeToast(message)
+        var style = ToastStyle()
+        style.backgroundColor = AppColor.white.withAlphaComponent(0.5)
+        style.messageFont = AppFont.getFont(style: .title2, weight: .bold)!
+        mainCoordinator.navigationController.visibleViewController?.view.makeToast(message,
+                                                                                   position: .top,
+                                                                                   style: style)
     }
     
     class func showPositiveMessage(message:String) {

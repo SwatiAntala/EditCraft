@@ -25,7 +25,7 @@ class BackgroundView: VICustomView {
     }
     
     func setFont() {
-        lblThree.font = AppFont.getFont(style: .body)
+        lblThree.font = AppFont.getFont(style: .title1)
     }
     
     @objc func setColor() {

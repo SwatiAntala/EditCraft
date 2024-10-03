@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ZLImageEditor
 
 class PhotoEditViewController: BaseVC {
     
@@ -38,7 +37,7 @@ class PhotoEditViewController: BaseVC {
         btnEditPhoto.setImage(R.image.ic_photo_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         btnEditPhoto.tintColor = AppColor.white
         btnEditPhoto.backgroundColor = AppColor.theme
-        btnEditPhoto.layer.cornerRadius = 30
+        btnEditPhoto.layer.cornerRadius = 50
     }
     
     func configImageEditor() {
@@ -52,7 +51,7 @@ class PhotoEditViewController: BaseVC {
         collView.register(R.nib.editVideoCollectionViewCell)
         pinterestLayout.delegate = self
         pinterestLayout.numberOfColumns = 2
-        pinterestLayout.cellPadding = 6
+        pinterestLayout.cellPadding = 16
     }
     
     @IBAction func btnEditPhotoSelected(_ sender: UIButton) {
@@ -124,13 +123,13 @@ extension PhotoEditViewController: UIImagePickerControllerDelegate, UINavigation
 extension PhotoEditViewController: EditVideoCellDelegate {
     func btnMoreSelected(fromCell cell: EditVideoCollectionViewCell, viaSender sender: UIButton) {
         if let indexPath = collView.indexPath(for: cell) {
-            showActionSheet(indexPath: indexPath)
+            showActionSheet(fromCell: cell, indexPath: indexPath)
         }
     }
     
-    @objc func showActionSheet(indexPath: IndexPath) {
+    @objc func showActionSheet(fromCell cell: EditVideoCollectionViewCell, indexPath: IndexPath) {
         // Create the action sheet
-        let actionSheet = UIAlertController(title: "Actions",
+        let actionSheet = UIAlertController(title: "Options",
                                             message: nil,
                                             preferredStyle: .actionSheet)
         
@@ -156,6 +155,8 @@ extension PhotoEditViewController: EditVideoCellDelegate {
                                          style: .cancel,
                                          handler: nil)
         actionSheet.addAction(cancelAction)
+        
+        actionSheet.popoverPresentationController?.sourceView = cell
         
         // Present the action sheet
         present(actionSheet,

@@ -67,7 +67,7 @@ class RecordViewController: BaseVC, AVAudioRecorderDelegate {
 
     func setupUI() {
         // Set up record button
-        recordButton.setAsSecondary(radius: 30)
+        recordButton.setAsSecondary(radius: 50)
         recordButton.setImage(R.image.ic_play_record()?.withRenderingMode(.alwaysTemplate),
                               for: .normal)
         recordButton.setImage(R.image.ic_stop_record()?.withRenderingMode(.alwaysTemplate),
@@ -88,6 +88,8 @@ class RecordViewController: BaseVC, AVAudioRecorderDelegate {
 
         // Set up recording time label
         recordingTimeLabel.text = "00:00"
+        
+        recordingTimeLabel.font = AppFont.getFont(style: .title2, weight: .bold)
         
         imgRecordView.image = R.image.ic_recording()
         [saveButton, resetButton].forEach({$0?.setAsPrimary()})

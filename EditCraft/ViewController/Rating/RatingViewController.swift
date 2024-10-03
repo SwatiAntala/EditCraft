@@ -59,7 +59,7 @@ class RatingViewController: BaseVC {
     
     func setFont() {
         lblTitle.font = AppFont.getFont(style: .title3, weight: .bold)
-        lblSubTitle.font = AppFont.getFont(style: .body)
+        lblSubTitle.font = AppFont.getFont(style: .title2)
     }
     
     func setData() {

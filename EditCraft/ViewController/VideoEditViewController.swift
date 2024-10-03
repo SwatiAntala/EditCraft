@@ -35,14 +35,14 @@ class VideoEditViewController: BaseVC {
         collView.register(R.nib.editVideoCollectionViewCell)
         pinterestLayout.delegate = self
         pinterestLayout.numberOfColumns = 2
-        pinterestLayout.cellPadding = 6
+        pinterestLayout.cellPadding = 16
     }
     
     func setImage() {
         btnEditVideo.setImage(R.image.ic_video_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         btnEditVideo.tintColor = AppColor.white
         btnEditVideo.backgroundColor = AppColor.theme
-        btnEditVideo.layer.cornerRadius = 30
+        btnEditVideo.layer.cornerRadius = 50
     }
     
     @IBAction func btnEditVideoSelected(_ sender: UIButton) {
@@ -92,13 +92,13 @@ extension VideoEditViewController: EditVideoCellDelegate {
     
     func btnMoreSelected(fromCell cell: EditVideoCollectionViewCell, viaSender sender: UIButton) {
         if let indexPath = collView.indexPath(for: cell) {
-            showActionSheet(indexPath: indexPath)
+            showActionSheet(fromCell: cell, indexPath: indexPath)
         }
     }
     
-    @objc func showActionSheet(indexPath: IndexPath) {
+    @objc func showActionSheet(fromCell cell: EditVideoCollectionViewCell, indexPath: IndexPath) {
         // Create the action sheet
-        let actionSheet = UIAlertController(title: "Actions", 
+        let actionSheet = UIAlertController(title: "Options",
                                             message: nil,
                                             preferredStyle: .actionSheet)
         
@@ -125,6 +125,7 @@ extension VideoEditViewController: EditVideoCellDelegate {
                                          handler: nil)
         actionSheet.addAction(cancelAction)
         
+        actionSheet.popoverPresentationController?.sourceView = cell
         // Present the action sheet
         present(actionSheet, 
                 animated: true,

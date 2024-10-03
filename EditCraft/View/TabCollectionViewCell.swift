@@ -22,8 +22,8 @@ class TabCollectionViewCell: UICollectionViewCell {
     }
     
     func updateUI(isSelected: Bool = false) {
-        if let superview = imgView.superview {
-            superview.layer.cornerRadius = cornerRadius
+        if let superview = imgView.superview?.superview {
+            superview.layer.cornerRadius = 16
             superview.backgroundColor = isSelected ? AppColor.theme : .clear
         }
         lblTitle.isHidden = !isSelected
@@ -31,7 +31,7 @@ class TabCollectionViewCell: UICollectionViewCell {
     }
     
     func setFont() {
-        lblTitle.font = AppFont.getFont(style: .footnote, weight: .medium)
+        lblTitle.font = AppFont.getFont(style: .title2, weight: .bold)
     }
     
     func setColor() {

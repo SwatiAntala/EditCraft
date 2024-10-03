@@ -39,21 +39,24 @@ class EditAudioCollectionViewCell: UICollectionViewCell {
             superview.layer.cornerRadius = cornerRadius
             superview.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
         }
-        imgView.layer.cornerRadius = 25
+        imgView.layer.cornerRadius = 40
         
         lblTitle.textColor = AppColor.white
         lblSubTitle.textColor = AppColor.deselect
     }
     
     func setFont() {
-        lblTitle.font = AppFont.getFont(style: .body, weight: .medium)
-        lblSubTitle.font = AppFont.getFont(style: .footnote)
+        lblTitle.font = AppFont.getFont(style: .title2, weight: .medium)
+        lblSubTitle.font = AppFont.getFont(style: .body)
     }
     
     func setImage() {
-        btnMore.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        btnPlay.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-        btnPlay.setImage(UIImage(systemName: "pause.circle.fill"), for: .selected)
+        btnMore.setImage(R.image.ic_menu()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btnPlay.setImage(R.image.ic_play()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btnPlay.setImage(R.image.ic_pause()?.withRenderingMode(.alwaysTemplate), for: .selected)
+        [btnMore, btnPlay].forEach { btn in
+            btn?.tintColor = AppColor.theme
+        }
     }
 
     @IBAction func btnPlaySelected(_ sender: UIButton) {

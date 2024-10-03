@@ -25,7 +25,7 @@ class StarRatingView: UIView {
         }
     }
     
-    var starSize: CGSize = CGSize(width: 44, height: 44)
+    var starSize: CGSize = CGSize(width: 60, height: 60)
     var spacing: CGFloat = 16.0
     var filledStarImage: UIImage = R.image.ic_star_fill()!
     var emptyStarImage: UIImage = R.image.ic_star_unfill()!

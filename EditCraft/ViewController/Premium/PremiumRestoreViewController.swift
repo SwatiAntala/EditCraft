@@ -52,7 +52,7 @@ class PremiumRestoreViewController: BaseVC {
     func setColor() {
         lblEditCraft.textColor = AppColor.white
         lblUnlock.textColor = AppColor.themeSecondary
-        lblYouAreUsing.textColor = AppColor.themeSecondary
+        lblYouAreUsing.textColor = AppColor.theme
         lblActive.textColor = AppColor.white
         lblPayFor.textColor = AppColor.themeSecondary
         lblPrice.textColor = AppColor.white
@@ -76,20 +76,20 @@ class PremiumRestoreViewController: BaseVC {
     }
     
     func setFont() {
-        lblEditCraft.font = AppFont.getFont(style: .title3, weight: .bold)
-        lblUnlock.font = AppFont.getFont(style: .title3, weight: .bold)
-        lblYouAreUsing.font = AppFont.getFont(style: .body, weight: .medium)
-        lblActive.font = AppFont.getFont(style: .body, weight: .medium)
+        lblEditCraft.font = AppFont.getFont(style: .title1, weight: .bold)
+        lblUnlock.font = AppFont.getFont(style: .title1, weight: .bold)
+        lblYouAreUsing.font = AppFont.getFont(style: .title2, weight: .bold)
+        lblActive.font = AppFont.getFont(style: .title2, weight: .medium)
         
         lblPayFor.font = AppFont.getFont(style: .title2, weight: .bold)
-        lblPrice.font = AppFont.getFont(style: .body, weight: .medium)
+        lblPrice.font = AppFont.getFont(style: .title2, weight: .bold)
         
         [lblLaunchDateText, lblDeadLineDateText,
          lblLaunchDate, lblDeadLineDate].forEach { lbl in
-            lbl?.font = AppFont.getFont(style: .body, weight: .bold)
+            lbl?.font = AppFont.getFont(style: .title2, weight: .bold)
         }
         
-        lblYouAreUsingProVersion.font = AppFont.getFont(style: .footnote, weight: .medium)
+        lblYouAreUsingProVersion.font = AppFont.getFont(style: .title2, weight: .bold)
     }
     
     func setData() {

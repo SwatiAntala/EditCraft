@@ -157,3 +157,52 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 }
+
+extension String {
+    func getAmountAndSymbol() -> (amount: String, symbol: String) {
+        // Adjusted regex pattern to capture symbols and amounts more effectively
+        let regexPattern = "([\\p{Sc}\\p{L}\\.\\s/]+)?\\s*([0-9,\\.]+)\\s*([\\p{Sc}\\p{L}\\.\\s/]+)?"
+        
+        let trimmedExample = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if let regex = try? NSRegularExpression(pattern: regexPattern, options: []) {
+            if let match = regex.firstMatch(in: trimmedExample, options: [], range: NSRange(location: 0, length: trimmedExample.utf16.count)) {
+                let nsString = trimmedExample as NSString
+                
+                let prefix = match.range(at: 1).location != NSNotFound ? nsString.substring(with: match.range(at: 1)).trimmingCharacters(in: .whitespaces) : ""
+                let amount = match.range(at: 2).location != NSNotFound ? nsString.substring(with: match.range(at: 2)) : ""
+                let suffix = match.range(at: 3).location != NSNotFound ? nsString.substring(with: match.range(at: 3)).trimmingCharacters(in: .whitespaces) : ""
+                
+                print("Original: \(self)")
+                print("Prefix: '\(prefix)', Amount: '\(amount)', Suffix: '\(suffix)'\n")
+                return (amount: amount, symbol: prefix + suffix)
+            }
+        }
+        return (amount: "", symbol: "")
+    }
+}
+
+extension String {
+    func strikeThrough() -> NSAttributedString {
+        let attributeString =  NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+        return attributeString
+    }
+}
+
+func applyDashedBorder(to view: UIView, cornerRadius: CGFloat, dashPattern: [NSNumber], borderColor: CGColor, borderWidth: CGFloat) {
+    let shapeLayer = CAShapeLayer()
+    shapeLayer.strokeColor = borderColor
+    shapeLayer.fillColor = nil
+    shapeLayer.lineDashPattern = dashPattern
+    shapeLayer.lineWidth = borderWidth
+    shapeLayer.frame = view.bounds
+    shapeLayer.path = UIBezierPath(roundedRect: view.bounds, cornerRadius: cornerRadius).cgPath
+    
+    // Apply the corner radius to the button's layer
+    view.layer.cornerRadius = cornerRadius
+    view.layer.masksToBounds = true
+    
+    // Add the dashed border as a sublayer
+    view.layer.addSublayer(shapeLayer)
+}

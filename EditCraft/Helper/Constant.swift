@@ -39,9 +39,13 @@ func fetchFromFileManager(vimixed: ECAudio) -> AudioFile? {
     }
 }
 
-func setConstaint(_ view: UIView, constant: CGFloat = 35) {
+func setConstaint(_ view: UIView, constant: CGFloat = 45) {
     let widthConstraint1 = view.widthAnchor.constraint(equalToConstant: constant)
     let heightConstraint1 = view.heightAnchor.constraint(equalToConstant: constant)
     heightConstraint1.isActive = true
     widthConstraint1.isActive = true
+}
+
+var showOfferScreen: Bool {
+    MTUserDefaults.specialOffer == Int(AppData.sharedInstance.offerInAppCounter) && !MTUserDefaults.isSpecialOfferFinished
 }

@@ -36,7 +36,7 @@ class BaseVC: UIViewController {
         
         let btnBack = ECButton()
         btnBack.setImage(R.image.ic_back(), for: .normal)
-        setConstaint(btnBack, constant: 32)
+        setConstaint(btnBack, constant: 45)
         btnBack.addTarget(self, action: #selector(btnBackSelected),
                           for: .touchUpInside)
         
@@ -47,7 +47,7 @@ class BaseVC: UIViewController {
         
         let attr = [
             NSAttributedString.Key.foregroundColor: AppColor.white,
-            NSAttributedString.Key.font: AppFont.getFont(style: .body,
+            NSAttributedString.Key.font: AppFont.getFont(style: .title1,
                                                          weight: .bold) as Any
         ]
         

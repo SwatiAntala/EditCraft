@@ -14,6 +14,7 @@ class AEDButton: UIButton {
         backgroundColor = AppColor.background
         setTitleColor(.white, for: .normal)
         layer.cornerRadius = 6
+        titleLabel?.font = AppFont.getFont(style: .title1, weight: .bold)
     }
     
     func setAsSecondary(radius: CGFloat) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -23,44 +23,46 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nL5-Yb-4di">
                                 <rect key="frame" x="0.0" y="0.0" width="258" height="158"/>
+                                <color key="backgroundColor" name="3C3C43"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vte-N3-cYp">
-                                <rect key="frame" x="8" y="8" width="41.333333333333336" height="24"/>
+                                <rect key="frame" x="16" y="16" width="41.5" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="UPe-tw-G8g"/>
+                                    <constraint firstAttribute="height" constant="40" id="UPe-tw-G8g"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E84-zJ-8rU">
-                                <rect key="frame" x="226" y="8" width="24" height="24"/>
+                                <rect key="frame" x="202" y="16" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="E84-zJ-8rU" secondAttribute="height" multiplier="1:1" id="Cbn-eL-Hki"/>
-                                    <constraint firstAttribute="height" constant="24" id="LvC-1g-FiF"/>
+                                    <constraint firstAttribute="height" constant="40" id="LvC-1g-FiF"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <connections>
                                     <action selector="btnMoreSelected:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nN0-hY-tlW"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="black"/>
+                        <color key="backgroundColor" name="3C3C43"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="E84-zJ-8rU" secondAttribute="trailing" constant="8" id="E55-Hl-Bc3"/>
-                            <constraint firstItem="Vte-N3-cYp" firstAttribute="leading" secondItem="9sx-Ns-sbM" secondAttribute="leading" constant="8" id="Jbz-Nk-49N"/>
+                            <constraint firstAttribute="trailing" secondItem="E84-zJ-8rU" secondAttribute="trailing" constant="16" id="E55-Hl-Bc3"/>
+                            <constraint firstItem="Vte-N3-cYp" firstAttribute="leading" secondItem="9sx-Ns-sbM" secondAttribute="leading" constant="16" id="Jbz-Nk-49N"/>
                             <constraint firstItem="nL5-Yb-4di" firstAttribute="leading" secondItem="9sx-Ns-sbM" secondAttribute="leading" id="Lei-99-Eko"/>
                             <constraint firstAttribute="bottom" secondItem="nL5-Yb-4di" secondAttribute="bottom" id="OJ3-GL-rOD"/>
                             <constraint firstItem="nL5-Yb-4di" firstAttribute="top" secondItem="9sx-Ns-sbM" secondAttribute="top" id="TAt-PE-SGu"/>
-                            <constraint firstItem="Vte-N3-cYp" firstAttribute="top" secondItem="9sx-Ns-sbM" secondAttribute="top" constant="8" id="bHT-Vy-kcn"/>
-                            <constraint firstItem="E84-zJ-8rU" firstAttribute="top" secondItem="9sx-Ns-sbM" secondAttribute="top" constant="8" id="jCY-YS-Erq"/>
+                            <constraint firstItem="Vte-N3-cYp" firstAttribute="top" secondItem="9sx-Ns-sbM" secondAttribute="top" constant="16" id="bHT-Vy-kcn"/>
+                            <constraint firstItem="E84-zJ-8rU" firstAttribute="top" secondItem="9sx-Ns-sbM" secondAttribute="top" constant="16" id="jCY-YS-Erq"/>
                             <constraint firstAttribute="trailing" secondItem="nL5-Yb-4di" secondAttribute="trailing" id="ovR-KO-VLO"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IcR-8P-gNb">
-                        <rect key="frame" x="113" y="63" width="32" height="32"/>
+                        <rect key="frame" x="109" y="59" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="HR6-V6-aQ7"/>
+                            <constraint firstAttribute="height" constant="40" id="HR6-V6-aQ7"/>
                             <constraint firstAttribute="width" secondItem="IcR-8P-gNb" secondAttribute="height" multiplier="1:1" id="HgH-OC-Blx"/>
                         </constraints>
                     </imageView>
@@ -86,8 +88,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="3C3C43">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

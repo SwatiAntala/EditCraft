@@ -2,45 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Dark</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Roboto-Medium.ttf</string>
-		<string>Roboto-Regular.ttf</string>
-		<string>Roboto-Bold.ttf</string>
-	</array>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
-		<dict>
-			<key>UIWindowSceneSessionRoleApplication</key>
-			<array>
-				<dict>
-					<key>UISceneConfigurationName</key>
-					<string>Default Configuration</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
-				</dict>
-			</array>
-		</dict>
-	</dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This application wants to access your photolibrary for getting video and edit for that</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This application wants to access your videocamera for getting video and edit for that</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This application wants to access your microphone</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>We need access to your Apple Music library to play and manage your music.</string>
-	<key>NSDocumentsFolderUsageDescription</key>
-	<string>We need access to your files to allow you to pick audio files.</string>
-	<key>kTCCServiceMediaLibrary</key>
-	<string>We need access to your Apple Music library to allow you to pick audio files.</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-7664893030317051~6635267249</string>
+	<key>GIDClientID</key>
+	<string>43075244171-t2uvv41k1rgmcith379lo4jru26p9kum.apps.googleusercontent.com</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -240,9 +205,32 @@
 			<string>3qcr597p9d.skadnetwork</string>
 		</dict>
 	</array>
-	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-7664893030317051~6635267249</string>
-	<key>GIDClientID</key>
-	<string>43075244171-t2uvv41k1rgmcith379lo4jru26p9kum.apps.googleusercontent.com</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Roboto-Medium.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>We need access to your Apple Music library to allow you to pick audio files.</string>
 </dict>
 </plist>

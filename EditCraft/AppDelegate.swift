@@ -77,6 +77,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarConfiguration.previousNextDisplayMode = .alwaysHide
+        
+        if AppData.sharedInstance.isPaid == false {
+            if MTUserDefaults.isSpecialOfferFinished {
+                MTUserDefaults.specialOffer = 0
+            }
+            else if Int(AppData.sharedInstance.offerInAppCounter) == MTUserDefaults.specialOffer {
+                MTUserDefaults.specialOffer = 1
+            } else {
+                MTUserDefaults.specialOffer += 1
+            }
+        } else {
+            MTUserDefaults.specialOffer = 0
+        }
         return true
     }
 
@@ -441,6 +454,5 @@ extension AppDelegate {
         
         UserDefaults.standard.set(AppData.sharedInstance.dicMain, forKey: "Dual_AppData")
         UserDefaults.standard.synchronize()
-        
     }
 }

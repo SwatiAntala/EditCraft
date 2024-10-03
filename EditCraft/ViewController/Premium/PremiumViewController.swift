@@ -58,8 +58,7 @@ class PremiumViewController: BaseVC {
     
     func setLayout() {
         collView.register(R.nib.premiumCollectionViewCell)
-        collView.contentInset = .init(top: 0, left: 8,
-                                      bottom: 0, right: 8)
+        collView.setCollectionViewLayout(createCompositionalLayout(), animated: true)
         selectedIndexPath = IndexPath(item: setPremiumOption().rawValue,
                                       section: 0)
     }
@@ -73,12 +72,12 @@ class PremiumViewController: BaseVC {
     }
     
     func setFont() {
-        lblEditCraft.font = AppFont.getFont(style: .title3, weight: .bold)
-        lblUnlock.font = AppFont.getFont(style: .title3, weight: .bold)
-        lblRemoveAds.font = AppFont.getFont(style: .title1, weight: .bold)
-        lblYouCanCancelAnyTime.font = AppFont.getFont(style: .footnote, weight: .medium)
+        lblEditCraft.font = AppFont.getFont(style: .largeTitle, weight: .bold)
+        lblUnlock.font = AppFont.getFont(style: .largeTitle, weight: .bold)
+        lblRemoveAds.font = AppFont.getFont(style: .largeTitle, weight: .bold)
+        lblYouCanCancelAnyTime.font = AppFont.getFont(style: .title3, weight: .bold)
         [btnTerm, btnRestore, btnPrivacyPolicy].forEach { btn in
-            btn?.titleLabel?.font = AppFont.getFont(style: .body, weight: .bold)
+            btn?.titleLabel?.font = AppFont.getFont(style: .title3, weight: .bold)
         }
     }
     
@@ -126,7 +125,7 @@ class PremiumViewController: BaseVC {
     }
     
     @IBAction func btnSubscribeNowSelected(_ sender: UIButton) {
-       handleContinue()
+        handleContinue()
     }
     
     @IBAction func btnTermSelected(_ sender: UIButton) {
@@ -200,9 +199,31 @@ extension PremiumViewController: UICollectionViewDelegate, UICollectionViewDataS
 }
 
 //MARK: layout
-extension PremiumViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.bounds.width-16)/3, height: 170)
+extension PremiumViewController {
+    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { (sectionNumber, environment) -> NSCollectionLayoutSection? in
+            self.listLayoutSection()
+        }
+    }
+    
+    private func listLayoutSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
+                                              heightDimension: .estimated(360))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .estimated(50))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        
+        group.interItemSpacing = .fixed(16)
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 16
+        section.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        return section
     }
 }
 

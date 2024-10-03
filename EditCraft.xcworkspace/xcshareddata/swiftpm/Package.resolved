@@ -1,5 +1,5 @@
 {
-  "originHash" : "9a29d51298941a90a54ad141f3cc09bf5b9be7919cb5a384a0073b55558c12b0",
+  "originHash" : "c65979e8f41314c54e39ddf1d5e5c96432467e490ddad06f0038f7cb8b381a3d",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -107,15 +107,6 @@
       "state" : {
         "revision" : "b6b67389a0f1a6fdd9c6457a8ab5b02eaab13c5c",
         "version" : "2.9.2"
-      }
-    },
-    {
-      "identity" : "zlimageeditor",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/longitachi/ZLImageEditor",
-      "state" : {
-        "revision" : "563e57e8e862a865127b9cf2a019aff57c0c88fb",
-        "version" : "2.0.3"
       }
     }
   ],

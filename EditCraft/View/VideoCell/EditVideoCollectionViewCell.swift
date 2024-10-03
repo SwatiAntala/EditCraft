@@ -37,19 +37,19 @@ class EditVideoCollectionViewCell: UICollectionViewCell {
     func setColor() {
         lblDuration.textColor = AppColor.black
         lblDuration.backgroundColor = AppColor.white.withAlphaComponent(0.6)
-        lblDuration.layer.cornerRadius = 12
+        lblDuration.layer.cornerRadius = 20
         lblDuration.layer.masksToBounds = true
         
         imgThumbnail.layer.cornerRadius = 12
         imgThumbnail.superview?.layer.cornerRadius = 12
         
-        btnMore.setImage(UIImage(systemName: "ellipsis.circle.fill")?.withRenderingMode(.alwaysTemplate),
+        btnMore.setImage(R.image.ic_more_circle()?.withRenderingMode(.alwaysTemplate),
                          for: .normal)
         btnMore.tintColor = AppColor.white.withAlphaComponent(0.6)
     }
     
     func setFont() {
-        lblDuration.font = AppFont.getFont(style: .footnote, weight: .medium)
+        lblDuration.font = AppFont.getFont(style: .headline, weight: .medium)
     }
     
     func configData(data: ECVideo) {

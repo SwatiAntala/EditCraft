@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appWindow.windowScene = windowScene
         appWindow.tintColor = AppColor.theme
         
-        let navVC = UINavigationController()
+        let navVC = UINavigationController(navigationBarClass: NavigationBar.self, toolbarClass: nil)
+        (navVC.navigationBar as! NavigationBar).preferredHeight = 90
         mainCoordinator = MainCoordinator(navigationController: navVC)
         mainCoordinator?.start()
         
